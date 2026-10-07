@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Réservation confirmée</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>✅ Réservation confirmée</h1>
+        <p>Merci d'avoir réservé chez WorkSpace.</p>
+    </header>
+
+    <main>
+
+        <section class="accueil">
+
+           <h2>Votre réservation est enregistrée !</h2>
+
+<div id="detailsReservation">
+    <p>Chargement de votre réservation...</p>
+</div>
+
+<script>
+    const reservations =
+        JSON.parse(localStorage.getItem("reservations")) || [];
+
+    const derniereReservation = reservations[reservations.length - 1];
+
+    const details = document.getElementById("detailsReservation");
+
+    if (derniereReservation) {
+    details.innerHTML = `
+    <p><strong>Nom 👤 :</strong> ${derniereReservation.nom}</p>
+    <p><strong>Espace 🏢 :</strong> ${derniereReservation.espace}</p>
+    <p><strong>Date 📅 :</strong> ${derniereReservation.date.split("-").reverse().join("/")}</p>
+    <p><strong>Heure 🕐 :</strong> ${derniereReservation.heure}</p>
+`;
+    } else {
+        details.innerHTML = "<p>Aucune réservation trouvée.</p>";
+    }
+</script>
+
+       <a href="index.html?modifier=true#reservations">
+    <button class="bouton-modifier">✏️ Modifier ma réservation</button>
+</a>
+<br><br>
+
+<a href="reservations.html">
+    <button>📅 Voir mes réservations</button>
+</a>
+            <br><br>
+
+            <a href="index.html">
+                <button>🏠 Retour à l'accueil</button>
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 - WorkSpace</p>
+    </footer>
+
+</body>
+
+</html>

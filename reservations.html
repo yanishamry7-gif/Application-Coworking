@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mes réservations - WorkSpace</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>📅 Mes réservations</h1>
+        <p>Retrouvez toutes vos réservations ici.</p>
+    </header>
+
+
+    <nav>
+
+        <a href="index.html">Accueil</a>
+
+        <a href="index.html#espaces">
+            Nos espaces
+        </a>
+
+        <a href="index.html#reservations">
+            Réserver
+        </a>
+
+        <a href="reservations.html">
+            Mes réservations
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        <a href="apropos.html">
+            À propos
+        </a>
+
+    </nav>
+
+
+    <main>
+
+        <section>
+
+            <h2>📋 Mes réservations</h2>
+
+
+            <p id="compteurReservations">
+                📊 0 réservation
+            </p>
+
+
+            <input
+                type="text"
+                id="recherche"
+                placeholder="🔎 Rechercher une réservation..."
+            >
+
+
+            <button
+                id="supprimerTout"
+                type="button"
+                class="bouton-danger">
+
+                🗑️ Supprimer toutes les réservations
+
+            </button>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Nom</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Espace</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="mesReservations">
+
+                </tbody>
+
+            </table>
+
+
+            <br>
+
+
+            <a href="index.html">
+
+                <button type="button">
+                    🏠 Retour à l'accueil
+                </button>
+
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 - WorkSpace
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        let reservations =
+            JSON.parse(
+                localStorage.getItem("reservations")
+            ) || [];
+/* ============================= */
+/* ÉTAPE 81 : RÉSERVATIONS PASSÉES */
+/* ============================= */
+
+const maintenant = new Date();
+
+reservations = reservations.filter(
+    function(reservation) {
+
+        const dateReservation =
+            new Date(
+                reservation.date +
+                "T" +
+                reservation.heure.substring(0, 5) +
+                ":00"
+            );
+
+        return dateReservation >= maintenant;
+    }
+);
+
+localStorage.setItem(
+    "reservations",
+    JSON.stringify(reservations)
+);
+
+        const tableau =
+            document.getElementById(
+                "mesReservations"
+            );
+
+
+        const compteur =
+            document.getElementById(
+                "compteurReservations"
+            );
+
+
+        // Afficher les réservations
+
+        function afficherReservations(
+            liste = reservations
+        ) {
+
+            tableau.innerHTML = "";
+
+
+            if (liste.length === 0) {
+
+                tableau.innerHTML = `
+
+                    <tr>
+
+                        <td colspan="5">
+
+                            📭 Aucune réservation.
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+            }
+
+
+            liste.forEach(
+                function(reservation) {
+
+                    const index =
+                        reservations.indexOf(
+                            reservation
+                        );
+
+
+                    const ligne =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    ligne.innerHTML = `
+
+                        <td>
+                            👤 ${reservation.nom}
+                        </td>
+
+                        <td>
+                            📅 ${
+                                reservation.date
+                                    .split("-")
+                                    .reverse()
+                                    .join("/")
+                            }
+                        </td>
+
+                        <td>
+                            🕐 ${reservation.heure}
+                        </td>
+
+                        <td>
+                            🏢 ${reservation.espace}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="bouton-modifier"
+                                type="button">
+
+                                ✏️ Modifier
+
+                            </button>
+
+                            <button
+                                class="bouton-supprimer"
+                                type="button">
+
+                                🗑️ Supprimer
+
+                            </button>
+
+                        </td>
+
+                    `;
+
+
+                    tableau.appendChild(
+                        ligne
+                    );
+
+
+                    // BOUTON MODIFIER
+
+                    ligne
+                        .querySelector(
+                            ".bouton-modifier"
+                        )
+                        .addEventListener(
+                            "click",
+                            function() {
+
+                               localStorage.setItem(
+    "reservationAModifier",
+    JSON.stringify(reservation)
+);
+
+localStorage.setItem(
+    "indexReservation",
+    index
+);
+
+window.location.href =
+    "index.html#reservations";
+
+                            }
+                        );
+
+
+                    // BOUTON SUPPRIMER
+
+                    ligne
+                        .querySelector(
+                            ".bouton-supprimer"
+                        )
+                        .addEventListener(
+                            "click",
+                            function() {
+
+                                const confirmation =
+                                    confirm(
+                                        "Voulez-vous vraiment supprimer cette réservation ?"
+                                    );
+
+
+                                if (confirmation) {
+
+                                    reservations.splice(
+                                        index,
+                                        1
+                                    );
+
+
+                                    localStorage.setItem(
+                                        "reservations",
+                                        JSON.stringify(
+                                            reservations
+                                        )
+                                    );
+
+
+                                    mettreAJourCompteur();
+
+
+                                    afficherReservations();
+
+                                }
+
+                            }
+                        );
+
+                }
+            );
+
+        }
+
+
+        // Compteur
+
+       function mettreAJourCompteur() {
+
+    if (reservations.length === 0) {
+
+        compteur.textContent =
+            "📊 Aucune réservation";
+
+    } else if (reservations.length === 1) {
+
+        compteur.textContent =
+            "📊 1 réservation";
+
+    } else {
+
+        compteur.textContent =
+            "📊 " +
+            reservations.length +
+            " réservations";
+
+    }
+
+}
+
+            if (
+                reservations.length === 0
+            ) {
+
+                compteur.textContent =
+                    "📊 Aucune réservation";
+
+            }
+
+            else if (
+                reservations.length === 1
+            ) {
+
+                compteur.textContent =
+                    "📊 1 réservation";
+
+            }
+
+            else {
+
+                compteur.textContent =
+                    "📊 " +
+                    reservations.length +
+                    " réservations";
+
+            }
+
+         
+
+
+        // Recherche
+
+        document
+            .getElementById("recherche")
+            .addEventListener(
+                "input",
+                function() {
+
+                    const recherche =
+                        this.value.toLowerCase();
+
+
+                    const resultats =
+                        reservations.filter(
+                            function(reservation) {
+
+                                return (
+
+                                    reservation.nom
+                                        .toLowerCase()
+                                        .includes(
+                                            recherche
+                                        )
+
+                                    ||
+
+                                    reservation.espace
+                                        .toLowerCase()
+                                        .includes(
+                                            recherche
+                                        )
+
+                                    ||
+
+                                    reservation.date
+                                        .includes(
+                                            recherche
+                                        )
+
+                                    ||
+
+                                    reservation.heure
+                                        .includes(
+                                            recherche
+                                        )
+
+                                );
+
+                            }
+                        );
+
+
+                    afficherReservations(
+                        resultats
+                    );
+
+                }
+            );
+
+
+        // Supprimer toutes les réservations
+
+        document
+            .getElementById("supprimerTout")
+            .addEventListener(
+                "click",
+                function() {
+
+                    if (
+                        reservations.length === 0
+                    ) {
+
+                        alert(
+                            "❌ Aucune réservation à supprimer."
+                        );
+
+                        return;
+                    }
+
+
+                    const confirmation =
+                        confirm(
+                            "⚠️ Supprimer toutes les réservations ?"
+                        );
+
+
+                    if (confirmation) {
+
+                        reservations = [];
+
+
+                        localStorage.removeItem(
+                            "reservations"
+                        );
+
+
+                        mettreAJourCompteur();
+
+
+                        afficherReservations();
+
+
+                        alert(
+                            "✅ Toutes les réservations ont été supprimées."
+                        );
+
+                    }
+
+                }
+            );
+
+
+        // Démarrage
+
+        mettreAJourCompteur();
+
+        afficherReservations();
+
+    </script>
+
+</body>
+
+</html>  

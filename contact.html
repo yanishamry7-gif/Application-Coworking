@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Contact - Coworking Space</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
+
+</head>
+
+<body>
+
+```
+<!-- ============================== -->
+<!-- EN-TÊTE                        -->
+<!-- ============================== -->
+
+<header>
+ 
+    <h1>📞 Contact</h1>
+
+    <p>
+        Une question ? Contactez-nous.
+    </p>
+
+</header>
+
+
+<!-- ============================== -->
+<!-- MENU                           -->
+<!-- ============================== -->
+
+<nav>
+
+    <a href="index.html">
+        Accueil
+    </a>
+
+    <a href="index.html#espaces">
+        Nos espaces
+    </a>
+
+    <a href="index.html#reservations">
+        Réserver
+    </a>
+
+    <a href="reservations.html">
+        Mes réservations
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
+    <a href="apropos.html">
+        À propos
+    </a>
+
+</nav>
+
+
+<!-- ============================== -->
+<!-- CONTENU                        -->
+<!-- ============================== -->
+
+<main>
+
+    <section>
+
+        <h2>
+            Nous contacter
+        </h2>
+
+
+        <form id="contactForm">
+
+
+            <!-- ====================== -->
+            <!-- NOM                     -->
+            <!-- ====================== -->
+
+            <label for="nom">
+                Votre nom :
+            </label>
+
+            <input
+                type="text"
+                id="nom"
+                placeholder="Votre nom"
+                maxlength="30"
+                required
+            >
+
+            <small id="compteurNomContact">
+                0 / 30 caractères
+            </small>
+
+
+            <!-- ====================== -->
+            <!-- EMAIL                   -->
+            <!-- ====================== -->
+
+            <label for="email">
+                Votre adresse e-mail :
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="exemple@email.com"
+                maxlength="100"
+                required
+            >
+            <small id="compteurEmail">
+            0 / 100 caractères
+  </small>
+
+            <!-- ====================== -->
+            <!-- MESSAGE                 -->
+            <!-- ====================== -->
+
+            <label for="message">
+                Votre message :
+            </label>
+
+            <textarea
+                id="message"
+                placeholder="Votre message"
+                maxlength="500"
+                required
+            ></textarea>
+
+            <small id="compteurMessage">
+                0 / 500 caractères
+            </small>
+
+
+            <!-- ====================== -->
+            <!-- BOUTON                  -->
+            <!-- ====================== -->
+
+            <button type="submit">
+                Envoyer le message
+            </button>
+
+
+            <!-- ====================== -->
+            <!-- CONFIRMATION            -->
+            <!-- ====================== -->
+
+            <p id="messageConfirmation"></p>
+
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<!-- ============================== -->
+<!-- PIED DE PAGE                   -->
+<!-- ============================== -->
+
+<footer>
+
+    <p>
+        © 2026 - Coworking Space
+    </p>
+
+</footer>
+
+
+<!-- ============================== -->
+<!-- JAVASCRIPT                     -->
+<!-- ============================== -->
+
+<script>
+
+    /* ================================ */
+    /* RÉCUPÉRATION DES ÉLÉMENTS        */
+    /* ================================ */
+
+    const formulaireContact =
+        document.getElementById("contactForm");
+
+    const champNomContact =
+        document.getElementById("nom");
+
+    const compteurNomContact =
+        document.getElementById("compteurNomContact");
+
+    const champEmail =
+        document.getElementById("email");
+
+    const compteurEmail =
+        document.getElementById("compteurEmail");
+
+    const champMessage =
+        document.getElementById("message");
+
+    const compteurMessage =
+        document.getElementById("compteurMessage");
+
+    const messageConfirmation =
+        document.getElementById("messageConfirmation");
+
+
+    /* ================================ */
+    /* COMPTEUR DU NOM                  */
+    /* ================================ */
+
+    if (champNomContact && compteurNomContact) {
+
+        function mettreAJourCompteurNom() {
+
+            compteurNomContact.textContent =
+                champNomContact.value.length +
+                " / 30 caractères";
+
+        }
+
+        mettreAJourCompteurNom();
+
+        champNomContact.addEventListener(
+            "input",
+            mettreAJourCompteurNom
+        );
+
+    }
+
+
+    /* ================================ */
+    /* COMPTEUR DE L'EMAIL              */
+    /* ================================ */
+
+    if (champEmail && compteurEmail) {
+
+        function mettreAJourCompteurEmail() {
+
+            compteurEmail.textContent =
+                champEmail.value.length +
+                " / 100 caractères";
+
+        }
+
+        mettreAJourCompteurEmail();
+
+        champEmail.addEventListener(
+            "input",
+            mettreAJourCompteurEmail
+        );
+
+    }
+
+
+    /* ================================ */
+    /* COMPTEUR DU MESSAGE              */
+    /* ================================ */
+
+    if (champMessage && compteurMessage) {
+
+        function mettreAJourCompteurMessage() {
+
+            compteurMessage.textContent =
+                champMessage.value.length +
+                " / 500 caractères";
+
+        }
+
+        mettreAJourCompteurMessage();
+
+        champMessage.addEventListener(
+            "input",
+            mettreAJourCompteurMessage
+        );
+champMessage.addEventListener(
+    "input",
+    function() {
+
+        const longueur =
+            champMessage.value.length;
+
+        if (longueur >= 450) {
+
+            compteurMessage.style.color =
+                "#dc2626";
+
+        } else if (longueur >= 400) {
+
+            compteurMessage.style.color =
+                "#f59e0b";
+
+        } else {
+
+            compteurMessage.style.color =
+                "#64748b";
+
+        }
+
+    }
+);
+    }
+
+
+    /* ================================ */
+    /* ENVOI DU FORMULAIRE              */
+    /* ================================ */
+
+    if (formulaireContact) {
+
+        formulaireContact.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                /* ======================== */
+                /* CONFIRMATION              */
+                /* ======================== */
+
+                const confirmation =
+                    confirm(
+                        "Voulez-vous vraiment envoyer ce message ?"
+                    );
+
+                if (!confirmation) {
+                    return;
+                }
+
+
+                /* ======================== */
+                /* RÉCUPÉRATION DU NOM       */
+                /* ======================== */
+
+                const nom =
+                    champNomContact.value.trim();
+
+
+                /* ======================== */
+                /* NOM MINIMUM 2 CARACTÈRES  */
+                /* ======================== */
+
+                if (nom.length < 2) {
+
+                    alert(
+                        "❌ Le nom doit contenir au moins 2 caractères."
+                    );
+
+                    return;
+
+                }
+
+
+                /* ======================== */
+                /* NOM : LETTRES UNIQUEMENT  */
+                /* ======================== */
+
+                const nomValide =
+                    /^[A-Za-zÀ-ÿ\s'-]+$/;
+
+                if (!nomValide.test(nom)) {
+
+                    alert(
+                        "❌ Le nom ne doit contenir que des lettres."
+                    );
+
+                    return;
+
+                }
+
+
+                /* ======================== */
+                /* NOM : MAXIMUM 30          */
+                /* ======================== */
+
+                if (nom.length > 30) {
+
+                    alert(
+                        "❌ Le nom ne peut pas dépasser 30 caractères."
+                    );
+
+                    return;
+
+                }
+
+
+                /* ======================== */
+                /* EMAIL                     */
+                /* ======================== */
+
+                const email =
+                    champEmail.value.trim();
+
+                const emailValide =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailValide.test(email)) {
+
+                    alert(
+                        "❌ Veuillez entrer une adresse e-mail valide."
+                    );
+
+                    return;
+
+                }
+
+
+                /* ======================== */
+                /* MESSAGE                   */
+                /* ======================== */
+
+                const message =
+                    champMessage.value.trim();
+
+
+                if (message.length < 10) {
+
+                    alert(
+                        "❌ Le message doit contenir au moins 10 caractères."
+                    );
+
+                    return;
+
+                }
+
+
+                if (message.length > 500) {
+
+                    alert(
+                        "❌ Le message ne peut pas dépasser 500 caractères."
+                    );
+
+                    return;
+
+                }
+
+
+                /* ======================== */
+                /* CONFIRMATION FINALE       */
+                /* ======================== */
+
+                if (messageConfirmation) {
+
+                    messageConfirmation.textContent =
+                        "✅ Merci ! Votre message a bien été envoyé.";
+
+                    messageConfirmation.style.color =
+                        "#15803d";
+
+                    messageConfirmation.style.fontWeight =
+                        "bold";
+
+                }
+
+
+                /* ======================== */
+                /* RÉINITIALISATION          */
+                /* ======================== */
+
+                formulaireContact.reset();
+
+
+                compteurNomContact.textContent =
+                    "0 / 30 caractères";
+
+                compteurEmail.textContent =
+                    "0 / 100 caractères";
+
+                compteurMessage.textContent =
+                    "0 / 500 caractères";
+
+            }
+        );
+
+    }
+
+</script>
+```
+
+</body>
+
+</html>

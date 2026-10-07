@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WorkSpace - Coworking</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="#espaces">Nos espaces</a>
+        <a href="#reservations">Réserver</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="reservations.html">Mes réservations</a>
+        <a href="contact.html">Contact</a>
+        <a href="apropos.html">À propos</a>
+    </nav>
+
+    <!-- EN-TÊTE -->
+    <header
+         <h1>🏢 WorkSpace</h1>
+
+        <p>
+            Votre espace de travail, simple et confortable.
+        </p>
+
+    </header>
+
+    <main>
+
+        <!-- ACCUEIL -->
+        <section class="accueil">
+
+            <h2>Bienvenue dans notre espace de coworking</h2>
+
+            <p>
+                Découvrez nos espaces de travail et réservez
+                facilement votre bureau.
+            </p>
+
+            <a href="#reservations">
+                <button class="bouton-principal">
+                    Réserver maintenant
+                </button>
+            </a>
+
+            <p class="texte-accueil">
+                Réservez votre espace de travail en quelques clics.
+            </p>
+
+        </section>
+
+
+        <!-- STATISTIQUES -->
+        <section class="statistiques">
+
+            <div class="statistique">
+                <h3>🏢 3</h3>
+                <p>Espaces disponibles</p>
+            </div>
+
+            <div class="statistique">
+                <h3>💻 13</h3>
+                <p>Places disponibles</p>
+            </div>
+
+            <div class="statistique">
+                <h3 id="nombreReservations">0</h3>
+                <p>Réservations</p>
+            </div>
+
+        </section>
+
+
+        <!-- ESPACES -->
+        <section id="espaces">
+
+            <h2>Nos espaces</h2>
+
+            <input
+                type="text"
+                id="rechercheEspaces"
+                placeholder="🔎 Rechercher un espace..."
+            >
+
+            <button id="effacerRecherche" type="button">
+                ❌ Effacer la recherche
+            </button>
+
+            <div class="espaces">
+
+                <div class="espace">
+                    <h3>💻 Bureau individuel</h3>
+                    <p>Pour 1 personne</p>
+                    <h3>15 € / heure</h3>
+
+                    <button onclick="choisirEspace('Bureau individuel')">
+                        Réserver
+                    </button>
+                </div>
+
+
+                <div class="espace bureau2">
+
+                    <h3>👥 Bureau 2</h3>
+                    <p>Pour 2 personnes</p>
+                    <h3>20 € / heure</h3>
+
+                    <button onclick="choisirEspace('Bureau 2')">
+                        Réserver
+                    </button>
+
+                </div>
+
+
+                <div class="espace">
+
+                    <h3>🏢 Salle de réunion</h3>
+                    <p>Pour 10 personnes</p>
+                    <h3>30 € / heure</h3>
+
+                    <button onclick="choisirEspace('Salle de réunion')">
+                        Réserver
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TARIFS -->
+        <section id="tarifs">
+
+            <h2>💰 Nos tarifs</h2>
+
+            <div class="espaces">
+
+                <div class="espace">
+
+                    <h3>💻 Bureau individuel</h3>
+                    <p>Pour 1 personne</p>
+                    <h3>15 € / heure</h3>
+
+                    <button onclick="choisirEspace('Bureau individuel')">
+                        Réserver
+                    </button>
+
+                </div>
+
+
+                <div class="espace">
+
+                    <h3>👥 Bureau 2</h3>
+                    <p>Pour 2 personnes</p>
+                    <h3>20 € / heure</h3>
+
+                    <button onclick="choisirEspace('Bureau 2')">
+                        Réserver
+                    </button>
+
+                </div>
+
+
+                <div class="espace">
+
+                    <h3>🏢 Salle de réunion</h3>
+                    <p>Pour 10 personnes</p>
+                    <h3>30 € / heure</h3>
+
+                    <button onclick="choisirEspace('Salle de réunion')">
+                        Réserver
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- AVANTAGES -->
+        <section class="avantages">
+
+            <h2>⭐ Pourquoi nous choisir ?</h2>
+
+            <div class="espaces">
+
+                <div class="espace">
+                    <h3>⚡ Simple</h3>
+                    <p>
+                        Réservez votre espace rapidement et facilement.
+                    </p>
+                </div>
+
+
+                <div class="espace">
+                    <h3>💻 Confortable</h3>
+                    <p>
+                        Des espaces adaptés pour travailler
+                        dans de bonnes conditions.
+                    </p>
+                </div>
+
+
+                <div class="espace">
+                    <h3>🔒 Pratique</h3>
+                    <p>
+                        Retrouvez facilement toutes vos réservations.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HORAIRES -->
+        <section class="horaires">
+
+            <h2>🕐 Nos horaires</h2>
+
+            <div class="espaces">
+
+                <div class="espace">
+                    <h3>Lundi - Vendredi</h3>
+                    <p>08:00 - 20:00</p>
+                </div>
+
+                <div class="espace">
+                    <h3>Samedi</h3>
+                    <p>09:00 - 18:00</p>
+                </div>
+
+                <div class="espace">
+                    <h3>Dimanche</h3>
+                    <p>Fermé</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ÉQUIPEMENTS -->
+        <section class="equipements">
+
+            <h2>🛠️ Nos équipements</h2>
+
+            <div class="espaces">
+
+                <div class="espace">
+                    <h3>📶 Wi-Fi</h3>
+                    <p>Connexion internet haut débit.</p>
+                </div>
+
+                <div class="espace">
+                    <h3>☕ Café</h3>
+                    <p>Un espace pour faire une pause.</p>
+                </div>
+
+                <div class="espace">
+                    <h3>🖨️ Imprimante</h3>
+                    <p>Une imprimante disponible sur place.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RÉSERVATIONS -->
+        <section id="reservations">
+
+            <h2>📅 Réservations</h2>
+
+            <form id="reservationForm">
+
+                <label for="nom">
+                    👤 Votre nom :
+                </label>
+
+               <input
+    type="text"
+    id="nom"
+    placeholder="Entrez votre nom"
+    maxlength="30"
+    required
+>
+<small id="compteurNom">
+    0 / 30 caractères
+</small>         
+
+                <label for="espace">
+                    🏢 Choisir un espace :
+                </label>
+
+                <select id="espace" required>
+
+                    <option value="">
+                        -- Choisir un espace --
+                    </option>
+
+                    <option value="Bureau individuel">
+                        Bureau individuel
+                    </option>
+
+                    <option value="Bureau 2">
+                        Bureau 2
+                    </option>
+
+                    <option value="Salle de réunion">
+                        Salle de réunion
+                    </option>
+
+                </select>
+
+
+                <label for="date">
+                    📅 Choisir une date :
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    required
+                >
+
+
+                <label for="heure">
+                    🕐 Choisir une heure :
+                </label>
+
+                <select id="heure" required>
+
+                    <option value="">
+                        -- Choisir une heure --
+                    </option>
+
+                    <option value="09:00 - 11:00">
+                        09:00 - 11:00
+                    </option>
+
+                    <option value="11:00 - 13:00">
+                        11:00 - 13:00
+                    </option>
+
+                    <option value="14:00 - 16:00">
+                        14:00 - 16:00
+                    </option>
+
+                    <option value="16:00 - 18:00">
+                        16:00 - 18:00
+                    </option>
+
+                </select>
+
+
+                <button type="submit">
+                    ✅ Confirmer la réservation
+                </button>
+
+            </form>
+
+
+            <a href="reservations.html">
+                <button type="button">
+                    📅 Voir mes réservations
+                </button>
+            </a>
+
+
+            <!-- TABLEAU -->
+            <table>
+
+                <thead>
+
+                    <tr>
+    <th>Nom</th>
+    <th>Date</th>
+    <th>Heure</th>
+    <th>Espace</th>
+    <th>Disponibilité</th>
+    <th>Action</th>
+</tr>
+
+                </thead>
+
+                <tbody id="listeReservations">
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+    <!-- RETOUR EN HAUT -->
+    <button id="retourHaut" type="button">
+        ⬆️ Retour en haut
+    </button>
+
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <p>© 2026 - WorkSpace</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+
+    <script>
+
+        // Recherche des espaces
+        const rechercheEspaces =
+            document.getElementById("rechercheEspaces");
+
+        const espaces =
+            document.querySelectorAll(".espace");
+
+
+        rechercheEspaces.addEventListener("input", function() {
+
+            const recherche =
+                this.value.toLowerCase();
+
+
+            espaces.forEach(function(espace) {
+
+                const texte =
+                    espace.textContent.toLowerCase();
+
+
+                if (texte.includes(recherche)) {
+
+                    espace.style.display = "";
+
+                } else {
+
+                    espace.style.display = "none";
+
+                }
+
+            });
+
+        });
+
+
+        // Effacer la recherche
+        const effacerRecherche =
+            document.getElementById("effacerRecherche");
+
+
+        effacerRecherche.addEventListener("click", function() {
+
+            rechercheEspaces.value = "";
+
+
+            espaces.forEach(function(espace) {
+
+                espace.style.display = "";
+
+            });
+
+        });
+
+
+        // Choisir automatiquement un espace
+        function choisirEspace(espace) {
+
+            document.getElementById("espace").value = espace;
+
+
+            document.getElementById("reservations").scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // Retour en haut
+        document
+            .getElementById("retourHaut")
+            .addEventListener("click", function() {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            });
+
+
+        window.addEventListener("load", function() {
+
+    const dejaBienvenue =
+        localStorage.getItem("bienvenueWorkSpace");
+
+    if (!dejaBienvenue) {
+
+        alert("👋 Bienvenue sur WorkSpace !");
+
+        localStorage.setItem(
+            "bienvenueWorkSpace",
+            "oui"
+        );
+    }
+
+});
+
+    </script>
+
+</body>
+
+</html>
